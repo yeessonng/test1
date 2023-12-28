@@ -18,7 +18,7 @@ jobs:
        
     steps: #깃허브 액션 - 깃허브가 제공하는 툴을 사용하면서 원하는 작업 ㄱㄱ
       # build 할 코드를 가져옴 (코드 checkout - github에서 제공해주는 checkout@v3 사용 이 리포지토리의 최상단 부터)
-      - name: Checkout #이름 맘대루
+      - name: Checkout
         uses: actions/checkout@v3
 
       # Node.js 세팅
