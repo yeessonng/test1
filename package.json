@@ -2,8 +2,7 @@
     "name": "umc_cicd",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
-    "type": "commonjs",
+    "main": "index.js"
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start:dev": "nodemon --exec babel-node index.js",
