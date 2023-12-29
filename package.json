@@ -2,7 +2,8 @@
     "name": "umc_cicd",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js"
+    "main": "index.js",
+    "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start:dev": "nodemon --exec babel-node index.js",
@@ -25,11 +26,11 @@
         "mysql2": "^3.6.1"
     },
     "devDependencies": {
-        "@babel/cli": "^7.22.15",
-        "@babel/core": "^7.22.17",
-        "@babel/node": "^7.22.15",
-        "@babel/preset-env": "^7.22.15",
-        "nodemon": "^3.0.2",
+        "@babel/cli": "^7.23.0",
+        "@babel/core": "^7.23.2",
+        "@babel/node": "^7.22.19",
+        "@babel/preset-env": "^7.23.2",
+        "nodemon": "^3.0.1",
         "swagger-autogen": "^2.23.7",
         "swagger-cli": "^4.0.4",
         "swagger-jsdoc": "^6.2.8",
