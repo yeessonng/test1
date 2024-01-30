@@ -1,6 +1,6 @@
 paths:
   /users/{userId}:
-    get:
+    post:
       tags:
         - Users
       summary: api 테스트
