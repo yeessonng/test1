@@ -1,32 +1,23 @@
 paths:
-  /users/{userId}:
+  /users:
     post:
       tags:
         - Users
       summary: api 테스트
       parameters:
-        - name: userId
-          in: path
-          schema:
-            type: integer
-          required: true
         - name: userTest
           in: body
           required: true
           schema:
             properties:
-              name:
+              password:
                 type: string
-                description: 이름
-                example: 남예은
-              description:
+                description: 비밀번호
+                example: dkvlek
+              email:
                 type: string
-                description: 설명
-                example: 설명입니다
-              randomcode:
-                type: integer
-                description: 초대코드
-                example: 2324
+                description: 이메일
+                example: eldl@naver.com
       responses:
         '200':
           description: api 테스트 성공
@@ -48,9 +39,8 @@ paths:
               data:
                 type: object
                 example: {
-                  "name": "남예은",
-                  "description": "설명입니다",
-                  "randomcode": 2324
+                  "password": "dkvlek",
+                  "email": "eldl@naver.com"
                 }
                 
         '400':
@@ -70,7 +60,6 @@ paths:
               message:
                 type: string
                 example: 잘못된 요청입니다
-
         '500':
           description: 서버 에러
           schema:
