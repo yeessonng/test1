@@ -5,3 +5,4 @@ import { userTest } from "../controllers/user.controller";
 export const userRouter = express.Router({mergeParams: true});
 
 userRouter.post('/', asyncHandler(userTest));
+userRouter.post('/login', userLogin);

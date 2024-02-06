@@ -22,7 +22,7 @@ export const status = {
     MEMBER_NOT_FOUND: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "MEMBER4001", "message": "사용자가 없습니다."},
     NICKNAME_NOT_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "MEMBER4002", "message": "닉네임은 필수입니다."},
     EMAIL_ALREADY_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "EMAIL4001", "message": "이메일이 이미 존재합니다."},
-
+    LOGIN_DISABLED: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4003", "message": "아이디와 비밀번호 중 일치하지 않는 것이 있습니다."},
     //article err
     ARTICLE_NOT_FOUND: {status: StatusCodes.NOT_FOUND, "isSuccess": false, "code": "ARTICLE4001", "message": "게시글이 없습니다."},
 
