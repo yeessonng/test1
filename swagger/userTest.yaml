@@ -1,5 +1,5 @@
 paths:
-  /users:
+  /users/regist:
     post:
       tags:
         - Users
@@ -10,14 +10,22 @@ paths:
           required: true
           schema:
             properties:
-              password:
-                type: string
-                description: 비밀번호
-                example: dkvlek
               email:
                 type: string
                 description: 이메일
-                example: eldl@naver.com
+                example: dkvledasgk@naver.com
+              password:
+                type: string
+                description: 비밀번호
+                example: eladgae
+              passwordCheck:
+                type: string
+                description: 비밀번호 확인
+                example: eladgae
+              agreeCheck:
+                type: boolean
+                description: 개인정보 약관 동의
+                example: true
       responses:
         '200':
           description: api 테스트 성공

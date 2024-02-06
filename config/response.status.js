@@ -22,6 +22,7 @@ export const status = {
     MEMBER_NOT_FOUND: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "MEMBER4001", "message": "사용자가 없습니다."},
 
     //regist err
-    AGREE_NOT_CHECK: {status: BAD_REQUEST, "isSuccess": false, "code": "REGIST4001", "message": "개인정보 이용에 동의해주셔야 회원가입이 가능합니다."},
-    EMAIL_ALREADY_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4002", "message": "이메일이 이미 존재합니다."},
+    AGREE_NOT_CHECK: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4001", "message": "개인정보 이용에 동의해주셔야 회원가입이 가능합니다."},
+    EMAIL_ALREADY_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4002", "message": "가입된 이메일이 이미 존재합니다."},
+    PASSWORD_NOT_CORRECT: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4003", "message": "비밀번호가 일치하지 않습니다."}
 }   
