@@ -30,7 +30,7 @@ app.use('/health', healthRoute);
 
 app.use('/users', userRouter);
 
-app.user('/towns', townRouter);
+app.use('/towns', townRouter);
 
 app.get('/', (req, res, next) => {
     res.send(response(status.SUCCESS, "루트 페이지!"));

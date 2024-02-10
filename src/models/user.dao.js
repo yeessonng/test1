@@ -11,8 +11,7 @@ export const confirmEmail = async (data) => {
 
         //이메일 중복 없는 지 체크
         const [emailConfirm] = await pool.query(confirmEmailSql, data);
-
-        console.log(emailConfirm);
+        
         //이메일 중복이면
         if(emailConfirm[0].isExistEmail){
             conn.release();

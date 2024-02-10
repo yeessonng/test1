@@ -1,0 +1,1 @@
+export const confirmCodeSql = "SELECT EXISTS(SELECT 1 FROM town WHERE code = ?) as isExistCode;";
