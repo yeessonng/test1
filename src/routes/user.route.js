@@ -1,6 +1,6 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import { userRegist } from "../controllers/user.controller";
+import { userRegist } from "../controllers/user.controller.js";
 
 export const userRouter = express.Router({mergeParams: true});
 //회원가입
