@@ -31,5 +31,5 @@ export const userAdd = async(body) => {
     });//userId
 
 
-    return previewUserDataDTO(await getUserJoinData(parseInt(addUserData)));
+    return previewUserDataDTO(await getUserJoinData(addUserData));
 }
