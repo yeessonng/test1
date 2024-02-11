@@ -1,31 +1,31 @@
 paths:
-  /towns/regist:
+  /towns:
     post:
       tags:
-        - Users
-      summary: api 테스트
+        - Towns
+      summary: 타운 추가
       parameters:
         - name: userTest
           in: body
           required: true
           schema:
             properties:
-              email:
+              userId:
+                type: integer
+                description: 타운장
+                example: 2
+              town_name:
                 type: string
-                description: 이메일
-                example: dkvledasgk@naver.com
-              password:
+                description: 타운 이름
+                example: 타운
+              town_explanation:
                 type: string
-                description: 비밀번호
-                example: eladgae
-              passwordCheck:
-                type: string
-                description: 비밀번호 확인
-                example: eladgae
-              agreeCheck:
-                type: boolean
-                description: 개인정보 약관 동의
-                example: true
+                description: 타운 설명
+                example: 코딩 공부
+              challenge_time:
+                type: time
+                description: 챌린지 목표 시간 설정
+                example: 1:30:00
       responses:
         '200':
           description: api 테스트 성공
@@ -47,8 +47,12 @@ paths:
               data:
                 type: object
                 example: {
-                  "password": "dkvlek",
-                  "email": "eldl@naver.com"
+                  "townId": 1,
+                  "town_leader": userId- ex. 3(타운장),
+                  "town_name": "타운 이름",
+                  "town_explanation": "타운 설명",
+                  "town_code": '124320',
+                  "challenge_time": "hh:mm:ss 형식- 챌린지 목표 시간"
                 }
                 
         '400':
