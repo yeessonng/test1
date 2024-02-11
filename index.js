@@ -10,6 +10,7 @@ import { BaseError } from './config/error.js';
 import { status } from './config/response.status.js';
 import { healthRoute } from './src/routes/health.route.js';
 import { userRouter } from './src/routes/user.route.js';
+import { townRouter } from './src/routes/town.route.js';
 
 dotenv.config();    // .env 파일 사용 (환경 변수 관리)
 
@@ -23,10 +24,13 @@ app.use(express.json());                    // request의 본문을 json으로 �
 app.use(express.urlencoded({extended: false})); // 단순 객체 문자열 형태로 본문 데이터 해석
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
+
 //test용 api입니다.
 app.use('/health', healthRoute);
 
 app.use('/users', userRouter);
+
+app.use('/towns', townRouter);
 
 app.get('/', (req, res, next) => {
     res.send(response(status.SUCCESS, "루트 페이지!"));
