@@ -4,4 +4,4 @@ import {newTown} from '../controllers/town.controller.js';
 
 export const townRouter = express.Router({mergeParams: true});
 
-townRouter.post('', asyncHandler(newTown));
+townRouter.post('/add', asyncHandler(newTown));
