@@ -24,5 +24,10 @@ export const status = {
     //regist err
     AGREE_NOT_CHECK: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4001", "message": "개인정보 이용에 동의해주셔야 회원가입이 가능합니다."},
     EMAIL_ALREADY_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4002", "message": "가입된 이메일이 이미 존재합니다."},
-    PASSWORD_NOT_CORRECT: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4003", "message": "비밀번호가 일치하지 않습니다."}
+    PASSWORD_NOT_CORRECT: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "REGIST4003", "message": "비밀번호가 일치하지 않습니다."},
+
+    //town err 
+    CODE_NOT_CORRECT: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "TOWN4001", "message": "타운 초대 코드를 잘못 입력하셨습니다."},
+    TOWN_IS_FULL: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "TOWN4002", "message": "타운에 가입할 수 있는 최대 인원 수는 7명이며, 해당 타운은 멤버 수 초과로 가입이 불가능합니다."},
+    MEMBER_ALREADY_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "TOWN4003", "message": "타운에 이미 가입된 멤버입니다."},
 }   
