@@ -1,8 +1,8 @@
 import { BaseError } from '../../config/error.js';
 import {status} from "../../config/response.status.js";
 
-import {confirmTownCode, addTown, getTownJoinData} from '../models/town.dao.js';
-import {previewTownDataDTO} from '../dtos/town.dto.js';
+import {confirmTownCode, addTown, getTownJoinData, confirmInviteCode, addTownMember, getTownMemberData} from '../models/town.dao.js';
+import {previewTownDataDTO, previewTownMemberDataDTO} from '../dtos/town.dto.js';
 
 //타운 생성
 export const postNewTown = async(body) => {
@@ -28,4 +28,30 @@ export const postNewTown = async(body) => {
     })//townId
 
     return previewTownDataDTO(await getTownJoinData(addTownData))
+}
+
+//타운 멤버 가입
+export const postNewMember = async(body) => {
+    const confirmInviteCodeData = await confirmInviteCode(body.town_code);
+    //townId int로 반환
+
+    //초대 코드가 맞지 않음
+    if(!confirmInviteCodeData){
+        throw new BaseError(status.CODE_NOT_CORRECT)
+    }
+    
+    const addTownMemberData = await addTownMember({
+        'userId': body.userId,
+        'townId': confirmInviteCodeData
+    })
+
+    if(addTownMemberData == 'memberovererr'){
+        throw new BaseError(status.TOWN_IS_FULL);
+    }
+
+    if(addTownMemberData == 'membererr'){
+        throw new BaseError(status.MEMBER_ALREADY_EXIST);
+    }
+
+    return previewTownMemberDataDTO(await getTownMemberData(confirmInviteCodeData))
 }
