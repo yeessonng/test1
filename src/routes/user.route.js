@@ -1,6 +1,6 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import { userTest } from "../controllers/user.controller";
+import { userLogin } from "../controllers/user.controller";
 
 export const userRouter = express.Router({mergeParams: true});
 
