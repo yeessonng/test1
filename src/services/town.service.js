@@ -1,8 +1,8 @@
 import { BaseError } from '../../config/error.js';
 import {status} from "../../config/response.status.js";
 
-import {confirmTownCode, addTown, getTownJoinData, confirmInviteCode, addTownMember, getTownMemberData} from '../models/town.dao.js';
-import {previewTownDataDTO, previewTownMemberDataDTO} from '../dtos/town.dto.js';
+import {confirmTownCode, addTown, getTownJoinData, confirmInviteCode, addTownMember, getTownMemberData, confirmUserCoin, getTownCoinData, confirmTownMember, townSaveCoin} from '../models/town.dao.js';
+import {previewTownDataDTO, previewTownMemberDataDTO, previewTownCoinDataDTO} from '../dtos/town.dto.js';
 
 //타운 생성
 export const postNewTown = async(body) => {
@@ -54,4 +54,25 @@ export const postNewMember = async(body) => {
     }
 
     return previewTownMemberDataDTO(await getTownMemberData(confirmInviteCodeData))
+}
+
+//타운 코인 적립
+export const postSaveCoin = async(body) => {
+
+    const confirmTownMemberData = await confirmTownMember(body);
+
+    if(!confirmTownMemberData){
+        throw new BaseError(status.MEMBER_NOT_EXIST);
+    }
+
+    const confirmUserCoinData = await confirmUserCoin(body);
+
+    if(!confirmUserCoinData){
+        throw new BaseError(status.COIN_NOT_ENOUGH);
+    }
+
+    await townSaveCoin(body);
+
+    return previewTownCoinDataDTO(await getTownCoinData(body));
+
 }

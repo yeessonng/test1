@@ -11,3 +11,10 @@ export const inviteCodeConfirmSql = "select ifnull((select town.id from town whe
 export const confirmMemNumSql = "select count(town_id) as count from town_member where town_id = ?;";
 export const getTownMemberSql = "select id, name, explanation, code, coin from town where id = ?;";
 export const checkMemSql = "select exists (select 1 from town_member where user_id = ? and town_id = ?) as isExistMember;";
+
+//타운 코인 적립
+export const confirmCoinSql = "select coin user_coin from user where id = ?;";
+export const minusUserCoinSql = "update user set coin = coin - ? where id = ?;";
+export const addTownCoinSql = "update town set coin = coin + ? where id = ?;";
+export const townCoinDataSql = "select town.coin from town where id = ?;";
+export const userCoinDataSql = "select coin user_coin from user where id = ?"

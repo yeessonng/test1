@@ -1,31 +1,27 @@
 paths:
-  /towns:
+  /towns/coin:
     post:
       tags:
         - Towns
-      summary: 타운 추가
+      summary: 타운 코인 적립
       parameters:
-        - name: userTest
+        - name: townCoins
           in: body
           required: true
           schema:
             properties:
               userId:
                 type: integer
-                description: 타운장
+                description: 코인 적립할 멤버
                 example: 2
-              town_name:
-                type: string
-                description: 타운 이름
-                example: 타운
-              town_explanation:
-                type: string
-                description: 타운 설명
-                example: 코딩 공부
-              challenge_time:
-                type: time
-                description: 챌린지 목표 시간 설정
-                example: 1:30:00
+              townId:
+                type: sinteger
+                description: 코인 적립할 타운
+                example: 5
+              coin:
+                type: integer
+                description: 적립할 코인 갯수
+                example: 12
       responses:
         '200':
           description: api 테스트 성공
@@ -47,12 +43,8 @@ paths:
               data:
                 type: object
                 example: {
-                  "townId": 1,
-                  "town_leader": userId- ex. 3(타운장),
-                  "town_name": "타운 이름",
-                  "town_explanation": "타운 설명",
-                  "town_code": '124320',
-                  "challenge_time": "hh:mm:ss 형식- 챌린지 목표 시간"
+                  "town_coin": 12,
+                  "user_coin": 1
                 }
                 
         '400':
