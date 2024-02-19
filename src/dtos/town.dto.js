@@ -9,3 +9,7 @@ export const previewTownMemberDataDTO = (data) => {
 export const previewTownCoinDataDTO = (data) => {
     return {'town_coin': data[0].coin, 'user_coin': data[0].user_coin};
 }
+
+export const previewTownCoinDTO = (data) => {
+    return {"townId": data[0].townId ,"town_coin": data[0].town_coin + '개'};
+}

@@ -5,6 +5,17 @@ import { status } from "../../config/response.status";
 
 import {confirmCodeSql, insertTownSql, insertTownMemberSql, insertTownChallengeSql, getTownDataSql, inviteCodeConfirmSql, confirmMemNumSql, getTownMemberSql, checkMemSql, confirmCoinSql, minusUserCoinSql, addTownCoinSql, townCoinDataSql, userCoinDataSql} from './town.sql.js';
 
+/*
+copy용
+export const getUserCoinData = async(userId) => {
+    try{
+
+    }catch(err){
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+*/
+
 //---------------------------타운 생성
 //타운 코드 중복 검사
 export const confirmTownCode = async(code) => {
@@ -207,5 +218,21 @@ export const getTownCoinData = async(data) => {
         return townCoinData;
     }catch(err){
         throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+//town coin 조회
+export const previewTownCoinData = async(townId) =>  {
+    try {
+        const conn = await pool.getConnection();
+
+        const [townCoin] = await pool.query(townCoinDataSql, townId);
+
+        townCoin[0].townId = townId;
+
+        conn.release();
+        return townCoin;
+    } catch (err) {
+        throw new BaseError(status.TOWN_NOT_FOUND);
     }
 }

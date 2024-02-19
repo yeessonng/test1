@@ -16,5 +16,5 @@ export const checkMemSql = "select exists (select 1 from town_member where user_
 export const confirmCoinSql = "select coin user_coin from user where id = ?;";
 export const minusUserCoinSql = "update user set coin = coin - ? where id = ?;";
 export const addTownCoinSql = "update town set coin = coin + ? where id = ?;";
-export const townCoinDataSql = "select town.coin from town where id = ?;";
-export const userCoinDataSql = "select coin user_coin from user where id = ?"
+export const townCoinDataSql = "select coin town_coin from town where id = ?;";
+export const userCoinDataSql = "select coin user_coin from user where id = ?";

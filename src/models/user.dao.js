@@ -83,6 +83,6 @@ export const getUserCoinData = async(userId) => {
         conn.release();
         return userCoin;
     }catch(err){
-        throw new BaseError(status.PARAMETER_IS_WRONG);
+        throw new BaseError(status.MEMBER_NOT_FOUND);
     }
 }
