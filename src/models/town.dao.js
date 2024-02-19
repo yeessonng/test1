@@ -3,7 +3,18 @@ import { pool } from "../../config/db.config";
 import { BaseError } from "../../config/error";
 import { status } from "../../config/response.status";
 
-import {confirmCodeSql, insertTownSql, insertTownMemberSql, insertTownChallengeSql, getTownDataSql, inviteCodeConfirmSql, confirmMemNumSql, getTownMemberSql, checkMemSql} from './town.sql.js';
+import {confirmCodeSql, insertTownSql, insertTownMemberSql, insertTownChallengeSql, getTownDataSql, inviteCodeConfirmSql, confirmMemNumSql, getTownMemberSql, checkMemSql, confirmCoinSql, minusUserCoinSql, addTownCoinSql, townCoinDataSql, userCoinDataSql} from './town.sql.js';
+
+/*
+copy용
+export const getUserCoinData = async(userId) => {
+    try{
+
+    }catch(err){
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+*/
 
 //---------------------------타운 생성
 //타운 코드 중복 검사
@@ -131,7 +142,97 @@ export const getTownMemberData = async(townId) => {
         conn.release();
         return getTownMemberData;
     }catch(err){
-        console.log(err);
         throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+//---------------------------타운 코인 적립
+//타운에 가입된 회원인지 확인
+export const confirmTownMember = async(data) => {
+    try{
+        const conn = await pool.getConnection();
+
+        const [confirmTownMember] = await pool.query(checkMemSql, [data.userId, data.townId]);
+
+        //가입된 회원이 아니면
+        if(!confirmTownMember[0].isExistMember){
+            conn.release();
+            return false;
+        }
+
+        conn.release();
+        return true;
+    }catch(err){
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+
+export const confirmUserCoin = async(data) => {
+    try{
+        const conn = await pool.getConnection();
+
+        const [confirmCoinData] = await pool.query(confirmCoinSql, data.userId);
+
+        if(parseInt(confirmCoinData[0].user_coin) < data.coin){
+            conn.release();
+            return false;
+        }
+
+        conn.release();
+        return true;
+
+    }catch(err){
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+export const townSaveCoin = async(data) => {
+    try{
+        const conn = await pool.getConnection();
+
+        await pool.query(minusUserCoinSql, [data.coin, data.userId]);
+
+        await pool.query(addTownCoinSql, [data.coin, data.townId]);
+
+        conn.release();
+
+        return;
+    }catch(err){
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+} 
+
+export const getTownCoinData = async(data) => {
+    try{
+        const conn = await pool.getConnection();
+
+        const [townCoinData] = await pool.query(townCoinDataSql, data.townId);
+
+        const [userCoinData] = await pool.query(userCoinDataSql, data.userId);
+
+        townCoinData[0].user_coin = parseInt(userCoinData[0].user_coin);
+
+        conn.release();
+
+        return townCoinData;
+    }catch(err){
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+//town coin 조회
+export const previewTownCoinData = async(townId) =>  {
+    try {
+        const conn = await pool.getConnection();
+
+        const [townCoin] = await pool.query(townCoinDataSql, townId);
+
+        townCoin[0].townId = townId;
+
+        conn.release();
+        return townCoin;
+    } catch (err) {
+        throw new BaseError(status.TOWN_NOT_FOUND);
     }
 }

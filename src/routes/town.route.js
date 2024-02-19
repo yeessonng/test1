@@ -1,6 +1,6 @@
 import express from "express";
 import asyncHandler from 'express-async-handler';
-import {newTown, newMember} from '../controllers/town.controller.js';
+import {newTown, newMember, saveCoin, getTownCoin} from '../controllers/town.controller.js';
 
 export const townRouter = express.Router({mergeParams: true});
 
@@ -8,4 +8,10 @@ export const townRouter = express.Router({mergeParams: true});
 townRouter.post('/add', asyncHandler(newTown));
 
 //타운 가입
-townRouter.post('/member', asyncHandler(newMember))
+townRouter.post('/member', asyncHandler(newMember));
+
+//타운 코인 적립
+townRouter.post('/coin', asyncHandler(saveCoin));
+
+//타운 코인 조회
+townRouter.get('/:townId/coin', asyncHandler(getTownCoin));
