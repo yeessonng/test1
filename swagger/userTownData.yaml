@@ -1,0 +1,74 @@
+paths:
+  /users/{userId}/town:
+    get:
+      tags:
+        - Users
+      summary: 사용자 가입 타운 전체 조회
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 타운 조회 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "town_id": 1,
+                  "town_name": "코딩 타운",
+                  "town_explanation": "코딩 실력 향상을 위한 타운",
+                  "town_regist_time": "dd"
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.

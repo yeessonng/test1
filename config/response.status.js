@@ -32,5 +32,6 @@ export const status = {
     MEMBER_ALREADY_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "TOWN4003", "message": "타운에 이미 가입된 멤버입니다."},
     MEMBER_NOT_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "TOWN4004", "message": "타운에 가입되지 않은 멤버입니다."},
     COIN_NOT_ENOUGH: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "TOWN4005", "message": "사용자의 코인 갯수가 부족하여 타운 코인 적립에 실패하였습니다."},
-    TOWN_NOT_FOUND: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "MEMBER4006", "message": "조회할 타운이 없습니다."}
+    TOWN_NOT_FOUND: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "MEMBER4006", "message": "조회할 타운이 없습니다."},
+    USER_TOWN_NOT_FOUND: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "MEMBER4006", "message": "사용자가 가입된 타운이 없습니다."}
 }   

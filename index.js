@@ -30,8 +30,6 @@ app.use('/health', healthRoute);
 
 app.use('/users', userRouter);
 
-app.use('/users/:userId', userRouter);
-
 app.use('/towns', townRouter);
 
 app.get('/', (req, res, next) => {
