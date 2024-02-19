@@ -3,6 +3,18 @@ import { pool } from "../../config/db.config";
 import { BaseError } from "../../config/error";
 import { status } from "../../config/response.status";
 import {insertUserSql, confirmEmailSql, agreeMappingSql, getUserDataSql} from '../models/user.sql.js';
+import {userCoinDataSql} from './town.sql.js';
+
+/*
+copy용
+export const getUserCoinData = async(userId) => {
+    try{
+
+    }catch(err){
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+*/
 
 //이메일 중복 체크
 export const confirmEmail = async (data) => {
@@ -54,6 +66,22 @@ export const getUserJoinData = async(userId) => {
         conn.release();
 
         return userData;
+    }catch(err){
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+//user coin 조회
+export const getUserCoinData = async(userId) => {
+    try{
+        const conn = await pool.getConnection();
+
+        const [userCoin] = await pool.query(userCoinDataSql, userId);
+
+        userCoin[0].userId = userId;
+
+        conn.release();
+        return userCoin;
     }catch(err){
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }

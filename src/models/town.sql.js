@@ -8,7 +8,7 @@ export const getTownDataSql = "select town.id, town.user_id, town.name, town.exp
 
 //타운 멤버 추가
 export const inviteCodeConfirmSql = "select ifnull((select town.id from town where town.code = ?), false) as id;";
-export const confirmMemNumSql = "select count(town_id) as count from town_member where town_id = ?;";
+export const confirmMemNumSql = "select count(town_id) as count from town_member where town_id = ? and status = '활동중';";
 export const getTownMemberSql = "select id, name, explanation, code, coin from town where id = ?;";
 export const checkMemSql = "select exists (select 1 from town_member where user_id = ? and town_id = ?) as isExistMember;";
 
