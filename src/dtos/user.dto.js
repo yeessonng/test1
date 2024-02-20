@@ -1,4 +1,4 @@
-export const previewUserDataDTO = (data) => {
+export const LoginDataDTO=(data)=>{
     console.log(data);
-    return {"userId": data[0].id, "email": data[0].email, "password": data[0].password, "agreeTitle": data[0].title};
+    return {"userId":data[0].id,"password":data[0].password,"emailId":data[0].email};
 }
