@@ -9,6 +9,9 @@ import { response } from './config/response.js';
 import { BaseError } from './config/error.js';
 import { status } from './config/response.status.js';
 import { healthRoute } from './src/routes/health.route.js';
+import { pwFindRouter } from './src/routes/pwFind.route.js';
+import { idFindRouter } from './src/routes/idFind.route.js';
+import { studyRouter } from './src/routes/study.route.js';
 
 dotenv.config();    // .env 파일 사용 (환경 변수 관리)
 
@@ -43,6 +46,11 @@ app.use((err, req, res, next) => {
     console.error(err);
     res.status(err.data.status || status.INTERNAL_SERVER_ERROR).send(response(err.data));
 });
+
+// router setting
+app.use('/users', pwFindRouter);
+app.use('/users', idFindRouter);
+app.use('/timer', studyRouter);
 
 app.listen(app.get('port'), () => {
     console.log(`Example app listening on port ${app.get('port')}`);
